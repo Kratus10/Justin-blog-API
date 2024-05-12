@@ -1,9 +1,9 @@
 const express = require('express');
-const userRouter = require('./routes/userRouter');
-const blogRouter = require('./routes/blogRouter');
-const { connectDB } = require('./db/connect');
-const logger = require('./config/logger');
-const auth = require('./middleware/auth');
+const userRouter = require('./controllers/router.js');
+const blogRouter = require('./routes/blogRouter.js');
+const {connectionToMongodb} = require('./db/connect.js');
+const logger = require('./config/logger.js');
+const auth = require('./auth.js');
 const path = require('path');
 const winston = require('winston');
 
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Connect to MongoDB
-connectDB();
+{connectionToMongodb};
 
 // Routes
 app.use('/users', userRouter);
@@ -222,7 +222,7 @@ app.use((err, req, res, next) => {
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-    logger.info(`Server is running on port ${PORT}`);
+    logger.info(`justin's Server is running on port ${PORT}`);
 });
 
 module.exports = app;

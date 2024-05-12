@@ -1,31 +1,17 @@
-// db/connect.js
-
-// Import Mongoose module
 const mongoose = require('mongoose');
-
-// Load environment variables
 require('dotenv').config();
 
-// Define the MongoDB connection URI
-const DB_URI = process.env.DB_URI;
+function connectionToMongodb() {
+    mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/blogDB');
 
-// Function to connect to the MongoDB database
-const connectDB = async () => {
-    try {
-        // Connect to the database
-        await mongoose.connect(DB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex: true,
-            useFindAndModify: false
-        });
-        console.log('MongoDB connected successfully');
-    } catch (error) {
-        // Log and handle any connection errors
-        console.error('MongoDB connection error:', error.message);
-        process.exit(1); // Exit the process with failure
-    }
-};
+    mongoose.connection.on('connected', () => {
+        console.log('MongoDB connection successful');
+    });
 
-// Export the connectDB function to be used elsewhere in the application
-module.exports = connectDB;
+    mongoose.connection.on('error', (err) => {
+        console.error(err);
+        console.log('MongoDB connection unsuccessful');
+    });
+}
+
+module.exports = { connectionToMongodb };

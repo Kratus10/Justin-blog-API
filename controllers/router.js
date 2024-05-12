@@ -2,8 +2,9 @@
 
 // Import necessary modules
 const express = require('express');
+// const User = require('./user');
 const router = express.Router();
-const userController = require('../controllers/userController');
+const userController = require('../controllers/userController.js');
 
 // Define routes for user operations
 

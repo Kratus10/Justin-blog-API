@@ -1,5 +1,5 @@
 // Import necessary modules
-const Blog = require('../models/blog');
+const Blog = require('./blogs');
 
 // Controller functions for blog operations
 

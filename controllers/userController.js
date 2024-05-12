@@ -1,7 +1,7 @@
 // controllers/userController.js
 
 // Import necessary modules
-const User = require('../models/user');
+const User = require('./User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');

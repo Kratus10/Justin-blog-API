@@ -1,8 +1,8 @@
 // Import necessary modules
 const express = require('express');
 const router = express.Router();
-const blogController = require('../controllers/blogController');
-const authMiddleware = require('../middlewares/auth');
+const blogController = require('../controllers/blogController.js');
+const authMiddleware = require('../auth.js');
 
 // Define routes for blogs
 
